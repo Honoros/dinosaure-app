@@ -1,2 +1,2 @@
-- A la racine du projet, la commande "node server/launch.js" démarre le serveur Express
-- Dans le dossier "frontend" du projet, la commande "ng serve" démarre le serveur Angular
+- A la racine du projet, la commande "node server/launch.js" démarre le serveur du back
+- Dans le dossier "frontend" du projet, la commande "ng serve" démarre le serveur du front
