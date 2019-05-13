@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Options
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" (click)="disconnect()">Déconnexion</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <br><br>
+  <div class="row">
+    <div class="col-4">
+      <form #addFriendForm="ngForm" (ngSubmit)="addDinoFriend(addFriendForm)">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">AJOUTER UN AMI</h5>
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="dinosaureService.dinosaure._id">
+            <div class="form-group">
+              <label for="formGroupNom">NOM</label>
+              <input type="text" class="form-control" id="formGroupNom" name="login" #login="ngModel" [(ngModel)]="dinosaureService.dinosaure.login" placeholder="Entrez ici" [required]="true">
+            </div>
+            <div class="form-group">
+              <label for="formGroupAge">AGE</label>
+              <input type="text" class="form-control" id="formGroupAge" name="age" #age="ngModel" [(ngModel)]="dinosaureService.dinosaure.age" placeholder="Entrez ici">
+            </div>
+            <div class="form-group">
+              <label for="formGroupFamille">FAMILLE</label>
+              <input type="text" class="form-control" id="formGroupFamille" name="famille" #famille="ngModel" [(ngModel)]="dinosaureService.dinosaure.famille" placeholder="Entrez ici">
+            </div>
+            <div class="form-group">
+              <label for="formGroupRace">RACE</label>
+              <input type="text" class="form-control" id="formGroupRace" name="race" #race="ngModel" [(ngModel)]="dinosaureService.dinosaure.race" placeholder="Entrez ici">
+            </div>
+            <div class="form-group">
+              <label for="formGroupNourriture">NOURRITURE</label>
+              <input type="text" class="form-control" id="formGroupNourriture" name="nourriture" #nourriture="ngModel" [(ngModel)]="dinosaureService.dinosaure.nourriture" placeholder="Entrez ici">
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm(addFriendForm)">Annuler</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-8">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Age</th>
+          <th scope="col">Famille</th>
+          <th scope="col">Race</th>
+          <th scope="col">Nourriture</th>
+          <th scope="col">Opérations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngIf="(dinosaureService.friends && dinosaureService.friends.length > 0); else elseBlock">
+          <tr *ngFor="let dino of dinosaureService.friends">
+            <td>{{ dino.login }}</td>
+            <td>{{ dino.age }}</td>
+            <td>{{ dino.famille }}</td>
+            <td>{{ dino.race }}</td>
+            <td>{{ dino.nourriture }}</td>
+            <td>
+              <a href="#" (click)="editFriend(dino)">
+                <i class="material-icons">edit</i>
+              </a>
+              <a href="#" (click)="deleteFriend(dino._id, addFriendForm)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-template #elseBlock>
+          <tr>
+            <td colspan="5">Aucun ami enregistré...</td>
+          </tr>
+        </ng-template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
