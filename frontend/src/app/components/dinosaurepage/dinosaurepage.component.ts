@@ -46,13 +46,17 @@ export class DinosaurepageComponent implements OnInit {
 
   addDinoFriend(form?: NgForm) {
     if (!form.value._id) {
-      let _id = sessionStorage.getItem('connectStatus');
-      this.dinosaureService.postDinosaureFriend(_id, form.value)
-        .subscribe(res => {
-          this.resetForm(form);
-          this.getFriends();
-          alert('Dinosaure ajouté');
-        });
+      if (form.value.login && form.value.age && form.value.famille && form.value.race && form.value.nourriture) {
+        let _id = sessionStorage.getItem('connectStatus');
+        this.dinosaureService.postDinosaureFriend(_id, form.value)
+          .subscribe(res => {
+            this.resetForm(form);
+            this.getFriends();
+            alert('Dinosaure ajouté');
+          });
+      } else {
+        alert('Remplissez tous les champs');
+      }
     } else {
       this.dinosaureService.putDinosaureFriend(form.value)
         .subscribe(res => {

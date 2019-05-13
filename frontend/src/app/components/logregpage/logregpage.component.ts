@@ -47,12 +47,16 @@ export class LogregpageComponent implements OnInit {
   }
 
   addDinoAccount(form: NgForm) {
-    this.dinosaureService.postDinosaureAccount(form.value)
-      .subscribe(res => {
-        this.resetForm(form);
-        console.log(res);
-        this.getFriends();
-      });
+    if (form.value.login && form.value.mdp && form.value.age && form.value.famille && form.value.race && form.value.nourriture) {
+      this.dinosaureService.postDinosaureAccount(form.value)
+        .subscribe(res => {
+          this.resetForm(form);
+          this.getFriends();
+          alert('Compte créé avec succès. Merci de fermer le formulaire');
+        });
+    } else {
+      alert('Remplissez tous les champs');
+    }
   }
 
   getFriends() {

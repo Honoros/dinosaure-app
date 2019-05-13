@@ -28,7 +28,7 @@ export class DinosaureService {
   }
 
   postDinosaureAccount(dinosaure: Dinosaure) {
-    return this.http.post(this.URL + '/', dinosaure);
+    return this.http.post(this.URL + '/account', dinosaure);
   }
 
   postDinosaureFriend(_id: String, dinosaure: Dinosaure) {

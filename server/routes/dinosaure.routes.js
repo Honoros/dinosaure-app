@@ -5,7 +5,7 @@ const dinosaureController = require('../controllers/dinosaure.controller');
 
 //router.get('/', dinosaureController.getFriends);
 router.post('/', dinosaureController.getIfAccountExists);
-router.post('/', dinosaureController.createDinoAccount);
+router.post('/account', dinosaureController.createDinoAccount);
 router.get('/friends/:id', dinosaureController.getFriends);
 router.post('/friends/:id', dinosaureController.createDinoFriend);
 router.put('/friends/:id', dinosaureController.editDinoFriend);
